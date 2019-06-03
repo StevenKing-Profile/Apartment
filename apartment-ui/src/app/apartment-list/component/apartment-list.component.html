@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <thead>
+      <th>Company</th>
+      <th>Name</th>
+      <th>Sqft</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let apartment of apartmentList">
+        <td>{{  apartment.company  }}</td>
+        <td>{{  apartment.name  }}</td>
+        <td>{{  apartment.sqft  }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
