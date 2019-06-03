@@ -1,25 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {ApartmentService} from "../service/apartment.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Apartment} from "../../data/apartment";
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { ApartmentService } from '../service/apartment.service'
+import { Apartment } from '../../data/apartment'
 
 @Component({
   selector: 'app-apartment',
   templateUrl: './apartment.component.html',
-  styleUrls: ['./apartment.component.css']
+  styleUrls: ['./apartment.component.css'],
 })
 export class ApartmentComponent implements OnInit {
-  public id: string;
-  apartment: Apartment;
+  public id: string
 
-  constructor(private service: ApartmentService, private route: ActivatedRoute) { }
+  private apartment: Apartment
+
+  private service: ApartmentService
+
+  private route: ActivatedRoute
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.service.getApartment(this.id).subscribe(
-      (apartment) => this.apartment = apartment
-    );
-    (err: any) => console.error(err);
+    this.id = this.route.snapshot.paramMap.get('id')
+    ApartmentService.getApartment(this.id).subscribe(apartment => {
+      this.apartment = apartment
+    })
   }
-
 }
