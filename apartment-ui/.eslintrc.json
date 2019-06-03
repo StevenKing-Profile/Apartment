@@ -1,31 +1,42 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
   "extends": [
     "airbnb",
     "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier/@typescript-eslint"
+
   ],
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jest": true,
-    "node": true
-  },
   "rules": {
-    "jsx-a11y/href-no-hash": ["off"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-    "max-len": [
-      "warn",
-      {
-        "code": 80,
-        "tabWidth": 2,
-        "comments": 80,
-        "ignoreComments": false,
-        "ignoreTrailingComments": true,
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true
+    "import/named": "off",
+    "import/export": "off",
+    "import/prefer-default-export": "off", // Allow single Named-export
+    "no-unused-vars": "off",
+    "no-unused-expressions": ["warn", {
+      "allowShortCircuit": true,
+      "allowTernary": true
+    }], // https://eslint.org/docs/rules/no-unused-expressions
+
+    /**
+     * @description rules of @typescript-eslint
+     */
+    "@typescript-eslint/prefer-interface": "off", // also want to use "type"
+    "@typescript-eslint/explicit-function-return-type": "off", // annoying to force return type
+
+    /**
+     * @description rules of eslint-plugin-prettier
+     */
+    "prettier/prettier": [
+      "error", {
+        "singleQuote": true,
+        "semi": false
       }
     ]
   }
