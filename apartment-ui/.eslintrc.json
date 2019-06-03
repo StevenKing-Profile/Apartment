@@ -19,6 +19,8 @@
     "import/export": "off",
     "import/prefer-default-export": "off", // Allow single Named-export
     "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
     "no-unused-expressions": ["warn", {
       "allowShortCircuit": true,
       "allowTernary": true
@@ -39,5 +41,15 @@
         "semi": true
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ""]
+      }
+    }
   }
 }

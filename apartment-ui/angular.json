@@ -118,5 +118,10 @@
       }
     }
   },
-  "defaultProject": "apartment-ui"
+  "defaultProject": "apartment-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
