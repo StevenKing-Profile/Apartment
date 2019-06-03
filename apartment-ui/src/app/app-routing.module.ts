@@ -9,7 +9,8 @@ import { ApartmentComponent } from './apartment/component/apartment.component';
 const routes: Routes = [
   { path: 'create', component: CreateApartmentComponent },
   { path: 'list', component: ApartmentListComponent },
-  { path: ':id', component: ApartmentComponent}
+  { path: ':id', component: ApartmentComponent},
+  { path: '', component: ApartmentListComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
