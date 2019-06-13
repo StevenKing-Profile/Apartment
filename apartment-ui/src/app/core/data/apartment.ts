@@ -1,8 +1,9 @@
 export interface Apartment {
-  company: string;
+  apartmentKey: {
+    company: string;
+    name: string;
+  };
   name: string;
   sqft: number;
-  price: {
-    price: number;
-  };
+  price: number;
 }
