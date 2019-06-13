@@ -19,8 +19,8 @@ public class ApartmentService {
     @Autowired
     ApartmentRepository apartmentRepository;
 
-    public List<Apartment> getApartments() {
-        return apartmentRepository.findAll();
+    public List<String> getAllApartmentCompanies() {
+        return apartmentRepository.findDistinctCompany();
     }
 
     public Apartment getApartment(long id) {
@@ -41,6 +41,17 @@ public class ApartmentService {
         }
 
         return null;
+    }
+
+    public boolean deleteApartment(long id) {
+        boolean isDeleted = false;
+        Optional<Apartment> apartmentOptional = apartmentRepository.findById(id);
+        if (apartmentOptional.isPresent()) {
+            apartmentRepository.deleteById(id);
+            isDeleted = true;
+        }
+
+        return isDeleted;
     }
 
     @ExceptionHandler(ApartmentNotFoundException.class)

@@ -26,8 +26,8 @@ public class ApartmentController {
     }
 
     @GetMapping(path="/list")
-    public ResponseEntity getApartments() {
-        List<Apartment> apartmentList = apartmentService.getApartments();
+    public ResponseEntity getAllApartmentCompanies() {
+        List<String> apartmentList = apartmentService.getAllApartmentCompanies();
         if (apartmentList == null)
             return new ResponseEntity<>("Error retrieving apartment list", HttpStatus.NO_CONTENT);
         return new ResponseEntity(apartmentList, HttpStatus.OK);
