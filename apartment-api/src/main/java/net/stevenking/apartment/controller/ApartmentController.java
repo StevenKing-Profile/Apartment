@@ -20,7 +20,6 @@ public class ApartmentController {
     ApartmentService apartmentService;
 
     @GetMapping(path="/{id}")
-//    @CrossOrigin(origins = "http://localhost:4200")
     public Apartment getApartment(@PathVariable Long id) {
         return apartmentService.getApartment(id);
     }
