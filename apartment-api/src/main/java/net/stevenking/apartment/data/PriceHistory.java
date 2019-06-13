@@ -15,14 +15,14 @@ import java.util.Date;
 public class PriceHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    public Long id;
 
     @Column(name="PRICE")
-    public long price;
+    public Long price;
 
     @Column(name = "DATE")
     public Date date;
 
     @Column(name = "APARTMENT_FK")
-    public long apartment_Fk;
+    public Long apartment_Fk;
 }

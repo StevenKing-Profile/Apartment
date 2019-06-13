@@ -17,12 +17,10 @@ import java.util.Set;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String street;
-
     private String city;
-
     private String state;
 
     @Column(name="ZIPCODE", length = 10)
