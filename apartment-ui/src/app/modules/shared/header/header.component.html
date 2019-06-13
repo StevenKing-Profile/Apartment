@@ -1,10 +1,18 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Apartment Application</span>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlexFill>
-      <div>List All Apartments</div>
-      <div>Create a new Apartment</div>
-      <div>Search</div>
-    </div>
-  </mat-toolbar-row>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-evenly center">
+  <span>Apartment Finder</span>
+  <span fxFlex></span>
+  <a routerLink="list" mat-button>List</a>
+  <a routerLink="create" mat-button>Create</a>
+  <span fxFlex></span>
+  <div>
+    <a mat-button>Sign Up</a>
+    <a mat-button>Sign In</a>
+  </div>
 </mat-toolbar>
+
+
+<!--<mat-form-field>-->
+<!--  <label>-->
+<!--    <input matInput placeholder="Search">-->
+<!--  </label>-->
+<!--</mat-form-field>-->

@@ -1,16 +1,14 @@
 <div>
-  <table>
-    <thead>
-      <th>Company</th>
-      <th>Name</th>
-      <th>Sqft</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let apartment of apartmentList">
-        <td>{{  apartment.company  }}</td>
-        <td>{{  apartment.name  }}</td>
-        <td>{{  apartment.sqft  }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <mat-grid-list cols="3">
+    <ng-container *ngFor="let company of uniqueApartmentCompanyList">
+      <mat-grid-tile>
+        {{ company }}
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
 </div>
+
+<!--<td>{{  apartment.ApartmentKey.company  }}</td>-->
+<!--<td>{{  apartment.ApartmentKey.name  }}</td>-->
+<!--<td>{{  apartment.name  }}</td>-->
+<!--<td>{{  apartment.sqft  }}</td>-->

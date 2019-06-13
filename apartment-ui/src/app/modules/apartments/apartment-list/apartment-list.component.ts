@@ -8,13 +8,15 @@ import { Apartment } from '../../../core/data/apartment';
   styleUrls: ['./apartment-list.component.scss'],
 })
 export class ApartmentListComponent implements OnInit {
-  apartmentList: Apartment[];
+  uniqueApartmentCompanyList: String[];
+
+  apartment: Apartment;
 
   constructor(private service: ApartmentService) {}
 
   ngOnInit() {
-    this.service.getAllApartments().subscribe(apartmentList => {
-      this.apartmentList = apartmentList;
+    this.service.getUniqueApartmentCompanies().subscribe(apartmentList => {
+      this.uniqueApartmentCompanyList = apartmentList;
     });
   }
 }

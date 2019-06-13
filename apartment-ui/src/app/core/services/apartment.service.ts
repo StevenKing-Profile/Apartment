@@ -13,8 +13,8 @@ export class ApartmentService {
     return this.http.get<Apartment>(`http://localhost:8080/apartment/${id}`);
   }
 
-  getAllApartments(): Observable<Apartment[]> {
-    return this.http.get<Apartment[]>('http://localhost:8080/apartment/list');
+  getUniqueApartmentCompanies(): Observable<String[]> {
+    return this.http.get<String[]>('http://localhost:8080/apartment/list');
   }
 
   createApartment(apartment: Apartment): Observable<Apartment> {
