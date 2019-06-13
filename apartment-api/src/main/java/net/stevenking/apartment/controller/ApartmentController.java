@@ -20,14 +20,13 @@ public class ApartmentController {
     ApartmentService apartmentService;
 
     @GetMapping(path="/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     public Apartment getApartment(@PathVariable Long id) {
         return apartmentService.getApartment(id);
     }
 
     @GetMapping(path="/list")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<String> getApartments() {
+    public ResponseEntity getApartments() {
         List<Apartment> apartmentList = apartmentService.getApartments();
         if (apartmentList == null)
             return new ResponseEntity<>("Error retrieving apartment list", HttpStatus.NO_CONTENT);
@@ -35,17 +34,24 @@ public class ApartmentController {
     }
 
     @PostMapping(path="/create")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> createApartment(@RequestBody Resource<Apartment> apartmentResource) {
+    public ResponseEntity createApartment(@RequestBody Resource<Apartment> apartmentResource) {
         Apartment apartment = apartmentResource.getContent();
         return new ResponseEntity<>(apartmentService.createApartment(apartment), HttpStatus.CREATED);
     }
 
     @PutMapping(path="/{id}/edit")
-    public ResponseEntity<?> updatePrice(@PathVariable Long id, @RequestParam Short price) {
+    public ResponseEntity updatePrice(@PathVariable Long id, @RequestParam Short price) {
         Apartment apartment = apartmentService.updatePrice(id, price);
         if (apartment == null)
             return new ResponseEntity<>("Error updating apartment list", HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(apartmentService.updatePrice(id, price), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity deleteApartment(@PathVariable Long id) {
+        if (apartmentService.deleteApartment(id))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
