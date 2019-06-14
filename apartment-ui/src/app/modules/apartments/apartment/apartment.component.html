@@ -1,10 +1,6 @@
-<!--  {{ apartment.company }}-->
-<!--  {{ apartment.name }}-->
-<!--  {{ apartment.sqft }}-->
-
-<!--  {{ apartment.price.price }}-->
-<!--  {{ apartment.address.street }}-->
-<!--  {{ apartment.address.city }}-->
-<!--  {{ apartment.address.state }}-->
-
-<
+<h2> {{ id }} </h2>
+<mat-card *ngFor="let apartment of apartmentList">
+  <mat-card-title>{{ apartment.apartmentKey.name }}</mat-card-title>
+  <mat-card-subtitle>{{ apartment.sqFt }} sqft  |  ${{ apartment.price }}</mat-card-subtitle>
+<!--  <mat-card-content> TODO: [img placeholder] </mat-card-content>-->
+</mat-card>

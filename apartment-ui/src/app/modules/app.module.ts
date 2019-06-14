@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CustomMaterialModule } from './shared/custom-material.module';
+import { CustomMaterialModule } from './custom-material.module';
 
 import { AppComponent } from './app.component';
 import { ApartmentListComponent } from './apartments/apartment-list/apartment-list.component';

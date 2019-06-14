@@ -11,14 +11,14 @@ import { Apartment } from '../../../core/data/apartment';
 export class ApartmentComponent implements OnInit {
   public id: string;
 
-  private apartment: Apartment;
+  private apartmentList: Apartment[];
 
   constructor(private service: ApartmentService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.service.getApartment(this.id).subscribe(apartment => {
-      this.apartment = apartment;
+    this.service.getApartments(this.id).subscribe(data => {
+      this.apartmentList = data;
     });
   }
 }

@@ -15,9 +15,7 @@ export class CreateApartmentComponent implements OnInit {
     company: new FormControl(),
     name: new FormControl(),
     sqft: new FormControl(),
-    price: new FormGroup({
-      price: new FormControl(),
-    }),
+    price: new FormControl(),
   });
 
   ngOnInit() {
@@ -29,9 +27,7 @@ export class CreateApartmentComponent implements OnInit {
       company: '',
       name: '',
       sqft: '',
-      price: this.formBuilder.group({
-        price: '',
-      }),
+      price: '',
     });
   }
 

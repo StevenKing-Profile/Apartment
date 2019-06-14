@@ -9,8 +9,8 @@ import { Apartment } from '../data/apartment';
 export class ApartmentService {
   constructor(private http: HttpClient) {}
 
-  getApartment(id: string): Observable<Apartment> {
-    return this.http.get<Apartment>(`http://localhost:8080/apartment/${id}`);
+  getApartments(id: string): Observable<Apartment[]> {
+    return this.http.get<Apartment[]>(`http://localhost:8080/apartment/${id}`);
   }
 
   getUniqueApartmentCompanies(): Observable<String[]> {

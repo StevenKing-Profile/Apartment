@@ -1,14 +1,9 @@
 <div>
-  <mat-grid-list cols="3">
+  <mat-grid-list cols="4" [gutterSize]="'20px'">
     <ng-container *ngFor="let company of uniqueApartmentCompanyList">
-      <mat-grid-tile>
-        {{ company }}
+      <mat-grid-tile class="title">
+        <a routerLink="/{{ company }}">{{ company }}</a>
       </mat-grid-tile>
     </ng-container>
   </mat-grid-list>
 </div>
-
-<!--<td>{{  apartment.ApartmentKey.company  }}</td>-->
-<!--<td>{{  apartment.ApartmentKey.name  }}</td>-->
-<!--<td>{{  apartment.name  }}</td>-->
-<!--<td>{{  apartment.sqft  }}</td>-->

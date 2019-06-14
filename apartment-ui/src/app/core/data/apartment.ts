@@ -4,6 +4,6 @@ export interface Apartment {
     name: string;
   };
   name: string;
-  sqft: number;
+  sqFt: number;
   price: number;
 }
