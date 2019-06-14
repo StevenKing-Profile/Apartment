@@ -19,17 +19,17 @@ public class ApartmentController {
     @Autowired
     ApartmentService apartmentService;
 
-    @GetMapping(path="/{id}")
-    public Apartment getApartment(@PathVariable Long id) {
-        return apartmentService.getApartment(id);
-    }
-
     @GetMapping(path="/list")
     public ResponseEntity getAllApartmentCompanies() {
         List<String> apartmentList = apartmentService.getAllApartmentCompanies();
         if (apartmentList == null)
             return new ResponseEntity<>("Error retrieving apartment list", HttpStatus.NO_CONTENT);
         return new ResponseEntity(apartmentList, HttpStatus.OK);
+    }
+
+    @GetMapping(path="/{apartmentName}")
+    public List<Apartment> getAllApartments(@PathVariable String apartmentName) {
+        return apartmentService.getAllApartments(apartmentName);
     }
 
     @PostMapping(path="/create")

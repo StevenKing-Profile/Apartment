@@ -1,6 +1,7 @@
 package net.stevenking.apartment.service;
 
 import net.stevenking.apartment.data.Apartment;
+import net.stevenking.apartment.data.ApartmentKey;
 import net.stevenking.apartment.repository.ApartmentRepository;
 import net.stevenking.config.ApartmentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,8 @@ public class ApartmentService {
         return apartmentRepository.findDistinctCompany();
     }
 
-    public Apartment getApartment(long id) {
-        return apartmentRepository.findById(id)
-                .orElseThrow(() -> new ApartmentNotFoundException(id));
+    public List<Apartment> getAllApartments(String company) {
+        return apartmentRepository.findApartmentByApartmentKey_Company(company);
     }
 
     public Apartment createApartment(Apartment apartment) {

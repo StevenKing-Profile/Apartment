@@ -17,7 +17,6 @@ public class Apartment {
 
     @Column(nullable = true)
     private Integer zpId;
-
     private Short sqFt;
     private Short price;
 
