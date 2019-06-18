@@ -3,6 +3,7 @@ package net.stevenking.apartment.data;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,9 +21,11 @@ public class PriceHistory {
     @Column(name="PRICE")
     public Long price;
 
-    @Column(name = "DATE")
-    public Date date;
-
     @Column(name = "APARTMENT_FK")
     public Long apartment_Fk;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreatedDate
+    private Date createdAt;
 }

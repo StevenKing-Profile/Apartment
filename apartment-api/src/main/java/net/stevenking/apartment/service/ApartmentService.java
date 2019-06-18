@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,8 @@ public class ApartmentService {
     }
 
     public Apartment createApartment(Apartment apartment) {
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+        apartment.setCreatedAt(currentTimestamp);
         return apartmentRepository.save(apartment);
     }
 

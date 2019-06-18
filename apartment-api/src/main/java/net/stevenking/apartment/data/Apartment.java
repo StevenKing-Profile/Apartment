@@ -2,6 +2,7 @@ package net.stevenking.apartment.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,8 +11,9 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Table(name = "APARTMENT")
-public class Apartment {
+public class Apartment extends AuditModel {
     @EmbeddedId
     private ApartmentKey apartmentKey;
 
