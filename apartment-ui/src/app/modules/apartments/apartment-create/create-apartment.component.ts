@@ -12,22 +12,43 @@ export class CreateApartmentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private service: ApartmentService) {}
 
   private apartmentForm = new FormGroup({
-    company: new FormControl(),
-    name: new FormControl(),
-    sqft: new FormControl(),
+    apartmentKey: new FormGroup({
+      company: new FormControl(),
+      name: new FormControl(),
+    }),
+    sqFt: new FormControl(),
     price: new FormControl(),
   });
 
+  private addressForm = new FormGroup({
+    street: new FormControl(),
+    city: new FormControl(),
+    state: new FormControl(),
+    zipCode: new FormControl(),
+  });
+
   ngOnInit() {
-    this.createForm();
+    this.createApartmentForm();
+    this.createAddressForm();
   }
 
-  createForm() {
+  createApartmentForm() {
     this.apartmentForm = this.formBuilder.group({
-      company: '',
-      name: '',
-      sqft: '',
+      apartmentKey: this.formBuilder.group({
+        company: '',
+        name: '',
+      }),
+      sqFt: '',
       price: '',
+    });
+  }
+
+  createAddressForm() {
+    this.addressForm = this.formBuilder.group({
+      street: '',
+      city: '',
+      state: '',
+      zipCode: '',
     });
   }
 

@@ -1,15 +1,17 @@
 <h2>Create a new apartment</h2>
 <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label>Company:</label>
-    <input class="form-control" formControlName="company" />
-    <label>Name:</label>
-    <input class="form-control" formControlName="name" />
-    <label>Sqft:</label>
-    <input class="form-control" formControlName="sqft" />
+    <div class="form-group" formGroupName="apartmentKey">
+      <label>Company:</label>
+      <input class="form-control" formControlName="company" />
+      <label>Name:</label>
+      <input class="form-control" formControlName="name" />
+    </div>
+    <label>sqft:</label>
+    <input class="form-control" formControlName="sqFt" />
     <label>Price:</label>
     <input class="form-control" formControlName="price" />
   </div>
-  
+
   <button type="submit" class="btn btn-primary" >Submit</button>
 </form>
