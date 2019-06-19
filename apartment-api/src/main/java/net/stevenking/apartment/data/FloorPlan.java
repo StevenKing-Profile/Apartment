@@ -6,24 +6,27 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "APARTMENT")
-public class Apartment extends AuditModel {
+@Table(name = "FLOOR_PLAN")
+public class FloorPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String roomNumber;
-    private Short price;
+    @Size(max = 10)
+    @Column(nullable = false)
+    private String planName;
 
-    @ManyToOne()
-    private FloorPlan floorPlan;
+    private Short sqFt;
 
-//    @Column(nullable = true)
-//    private String zpid;
+    private String url;
+
+    @ManyToOne(optional = false)
+    private Company company;
 }

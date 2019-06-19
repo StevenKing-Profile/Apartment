@@ -1,13 +1,19 @@
 package net.stevenking.apartment.service;
 
 import net.stevenking.apartment.data.Apartment;
-import net.stevenking.apartment.data.ApartmentKey;
+import net.stevenking.apartment.data.Company;
+import net.stevenking.apartment.data.FloorPlan;
 import net.stevenking.apartment.repository.ApartmentRepository;
+import net.stevenking.apartment.repository.CompanyRepository;
+import net.stevenking.apartment.repository.FloorPlanRepository;
 import net.stevenking.config.ApartmentNotFoundException;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,14 +25,23 @@ import java.util.Optional;
 public class ApartmentService {
 
     @Autowired
+    CompanyRepository companyRepository;
+
+    @Autowired
+    FloorPlanRepository floorPlanRepository;
+
+    @Autowired
     ApartmentRepository apartmentRepository;
 
-    public List<String> getAllApartmentCompanies() {
-        return apartmentRepository.findDistinctCompany();
+    @Autowired
+    RestTemplate restTemplate;
+
+    public List<Company> findAllApartmentCompanies() {
+        return companyRepository.findAll();
     }
 
-    public List<Apartment> getAllApartments(String company) {
-        return apartmentRepository.findApartmentByApartmentKey_Company(company);
+    public List<FloorPlan> findAllApartmentFloorPlans(Long id) {
+        return floorPlanRepository.findAllFloorPlanByCompany_Id(id);
     }
 
     public Apartment createApartment(Apartment apartment) {
