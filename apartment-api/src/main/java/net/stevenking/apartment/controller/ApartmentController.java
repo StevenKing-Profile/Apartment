@@ -2,6 +2,8 @@ package net.stevenking.apartment.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import net.stevenking.apartment.data.Apartment;
+import net.stevenking.apartment.data.Company;
+import net.stevenking.apartment.data.FloorPlan;
 import net.stevenking.apartment.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -21,15 +23,15 @@ public class ApartmentController {
 
     @GetMapping(path="/list")
     public ResponseEntity getAllApartmentCompanies() {
-        List<String> apartmentList = apartmentService.getAllApartmentCompanies();
+        List<Company> apartmentList = apartmentService.findAllApartmentCompanies();
         if (apartmentList == null)
             return new ResponseEntity<>("Error retrieving apartment list", HttpStatus.NO_CONTENT);
         return new ResponseEntity(apartmentList, HttpStatus.OK);
     }
 
     @GetMapping(path="/{apartmentName}")
-    public List<Apartment> getAllApartments(@PathVariable String apartmentName) {
-        return apartmentService.getAllApartments(apartmentName);
+    public List<FloorPlan> getAllApartmentFloorPlans(@PathVariable Long companyId) {
+        return apartmentService.findAllApartmentFloorPlans(companyId);
     }
 
     @PostMapping(path="/create")

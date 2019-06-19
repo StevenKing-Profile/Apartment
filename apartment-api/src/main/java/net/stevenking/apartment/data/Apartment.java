@@ -14,14 +14,16 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "APARTMENT")
 public class Apartment extends AuditModel {
-    @EmbeddedId
-    private ApartmentKey apartmentKey;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = true)
-    private Integer zpId;
-    private Short sqFt;
+    private String roomNumber;
     private Short price;
 
-    @ManyToOne
-    private Address address;
+    @ManyToOne()
+    private FloorPlan floorPlan;
+
+//    @Column(nullable = true)
+//    private String zpid;
 }
