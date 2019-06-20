@@ -17,12 +17,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ApartmentService {
+
+    @Autowired
+    SeleniumService seleniumService;
 
     @Autowired
     CompanyRepository companyRepository;
@@ -50,7 +56,7 @@ public class ApartmentService {
         return apartmentRepository.save(apartment);
     }
 
-    public Apartment updatePrice(long id, short price) {
+    public Apartment updatePriceManually(long id, short price) {
         Optional<Apartment> apartmentOptional = apartmentRepository.findById(id);
         if (apartmentOptional.isPresent()) {
             Apartment apartment = apartmentOptional.get();
@@ -59,6 +65,27 @@ public class ApartmentService {
         }
 
         return null;
+    }
+
+    public void fetchNewApartmentsAndUpdatePrice() throws MalformedURLException {
+        List<FloorPlan> floorPlanList = floorPlanRepository.findAll();
+        for (FloorPlan floorPlan : floorPlanList) {
+            List<Apartment> websiteFloorPlanApartmentList = seleniumService.fetchNewPrice(floorPlan);
+            List<Apartment> existingFloorPlanApartmentList = apartmentRepository.findApartmentByFloorPlan(floorPlan);
+
+            for (Apartment websiteApartment : websiteFloorPlanApartmentList) {
+                if (existingFloorPlanApartmentList.stream()
+                        .map(Apartment::getRoomNumber)
+                        .anyMatch(websiteApartment.getRoomNumber()::equals)) {
+                    Optional<Apartment> optionalApartment = existingFloorPlanApartmentList.stream()
+                            .filter(a -> a.getRoomNumber().equals(websiteApartment.getRoomNumber()))
+                            .findFirst();
+                    Apartment existingApartment = optionalApartment.get();
+                    existingApartment.setPrice(websiteApartment.getPrice());
+                    apartmentRepository.save(existingApartment);
+                }
+            }
+        }
     }
 
     public boolean deleteApartment(long id) {

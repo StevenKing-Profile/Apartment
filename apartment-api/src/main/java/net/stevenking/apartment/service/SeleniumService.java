@@ -23,23 +23,25 @@ public class SeleniumService {
     @Autowired
     FloorPlanRepository floorPlanRepository;
 
-    public void fetchNewPrice() throws MalformedURLException {
-        List<FloorPlan> floorPlanList = floorPlanRepository.findAll();
+    public List<Apartment> fetchNewPrice(FloorPlan floorPlan) throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
         Capabilities cap = DesiredCapabilities.chrome();
         ((DesiredCapabilities) cap).setPlatform(org.openqa.selenium.Platform.WINDOWS);
-        for (FloorPlan fp : floorPlanList) {
-            Apartment apartment = new Apartment();
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("test-type"));
-            WebDriver driver = new ChromeDriver(chromeOptions);
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            driver.get(fp.getUrl());
-            WebElement element = driver.findElement(By.cssSelector("[data-selenium-id=\"Rent1\"]"));
-            apartment.setPrice(Short.valueOf(element.getText()));
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("test-type"));
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        driver.get(floorPlan.getUrl());
 
-            System.out.println(apartment.getPrice());
-        }
+        WebElement element = driver.findElement(By.cssSelector("[data-selenium-id=\"Rent1\"]"));
+
+        Apartment apartment = new Apartment();
+        apartment.setPrice(Short.valueOf(element.getText()));
+        apartment.setFloorPlan(floorPlan);
+        System.out.println(apartment.getPrice());
+
+        driver.close();
+        driver.quit();
     }
 }
